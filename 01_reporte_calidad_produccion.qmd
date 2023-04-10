@@ -1,0 +1,1017 @@
+---
+title: "Efecto de estrategias de riego deficitario sobre la productividad y calidad de huertos de cerezos, variedad regina"
+subtite: "SatOri: Sistema satelital para la optimización de riego (ID21|10297)"
+author: "Dr. Manuel Muñoz"
+lang: es
+format: 
+  html:
+    lof: true
+    lot: true
+    toc: true
+    number-sections: true
+  pdf:
+    lof: true
+    lot: true
+    toc: true
+    number-sections: true
+bibliography: referencias.bib
+date: "24/03/2023"
+---
+
+# Introducción
+
+El cambio global ha provocado una intensificación de la sequía en distintas áreas del mundo. Entre ellas, Chile Central se caracteriza por presentar un evento de Mega Sequía con pocos análogos en los últimos milenios, registrando desde el 2010 un secuencia ininterrumpida de años con déficits de lluvia promedio de un 20-40% [@garreaud2020]. Este tipo de fenómenos puede llegar a tener importantes impactos en la disponibilidad de agua en cantidad y calidad necesaria para actividades agrícolas, pudiendo repercutir de manera significativa sobre factores sociales y económicos [@garreaud2020; @pena2020]
+
+Esta realidad enfrenta a las instituciones y a los productores agrícolas al desafío de mejorar su capacidad de adaptación y de gestión ante un escenario de clima cambiante [@hulbert2017]. En este contexto, la estrategia de riego deficitario es considerada una práctica de gestión de útil, ya que permite usar volúmenes de recursos hídrico menores en zonas donde el agua es escasa, aumentando su productividad sin disminuir la calidad de la cosecha, permiten ahorrar este recurso vital [@blanco2019b; @lopez2021]. Esta estrategia puede ser de gran importancia sobre todo para el sector del cultivo de árboles frutales, cuyas características particulares hacen poco probable que los agricultores puedan adoptar prácticas como la rotación anual sus cultivos como estrategia de adaptación al fenómeno de sequía [@pechan2023].
+
+Entre los cultivos frutales, actualmente las cerezas representa el segundo producto con mayor exportación en la agroindustria chilena, siendo el país el tercer exportador de fruta fresca con más de 25 000 hectáreas bajo riego, representando un mercado aproximado de 1560 millones de dólares, generando miles de empleos directos e indirectos, constituyéndose en una industria clave a nivel nacional [@cb2020a; @gonzalez2022]
+
+El objetivo de la presente investigación consiste en evaluar distintas estrategias de riego deficitario en dos campos de cultivos de cerezos ubicados en Chile Central y analizar el efecto que estos tratamientos tiene sobre la productividad y calidad de la cosecha. Al mismo tiempo, se buscará analizar la dinámica del potencial hídrico y la actividad fotosintética de los cerezos, de manera de lograr una mayor comprensión de los procesos involucrados en la adaptación de los cerezos a las condiciones de riego deficitario.
+
+# Materiales y Métodos
+
+## Tratamientos de riego deficitario
+
+Los ensayos de riego deficitario se llevaron a cabo en cultivos de cerezos (variedad regina) ubicados en dos predios pertenecientes a la propiedad de la compañía Garcés Fruit: campos "La Esperanza" y "Río Claro" (ambos ubicados en la Región O'higgins). En cada uno de ellos se seleccionó una parcela, la cual fue a su vez subdividida en 5 grupos. Esta unidad experimental estuvo constituida por 40 árboles agrupados en 8 filas y 5 columnas (400 m2). Todas las unidades presentaron las mismas condiciones de fertilización, poda, control de malezas y de plagas, las cuales se ajustaron a los estándares y prácticas habituales de Garcés Fruit, siendo la principal diferencia entre ellos el tratamiento de irrigación aplicado.
+
+Para cada uno de los campos, el ensayo constó de 4 tratamientos de irrigación diferenciados, además de un grupo control que recibió el riego habitual del productor local (T0). En la [@fig-riego-la-esperanza]a se muestra la evolución del riego acumulado semanal para los diferentes tratamientos en el campo La Esperanza, entre la semana del 21-27 de noviembre del 2022 hasta finales del mes de febrero del 2023 (semana del 20-26/2). Al mismo tiempo, en la [@fig-riego-la-esperanza]b se observa el total acumulado para cada tratamiento a lo largo de todo el período de interés. En este caso , el T1 consistió en una irrigación que satisfacía la demanda de la evapotranspiración del cultivo, mientras que T2-T4 representaron estrategias de irrigación deficitarios, correspondiendo a un 90%, un 52,3% y un 27,4% del volumen total empleado para T1 de manera respectiva.
+
+```{r}
+#| label: carga de bases de datos
+#| include: false
+library(readxl)
+ fluorescencia_2 <- read_excel("data/fluorescencia-2.xlsx",sheet = "Esperanza.riego2")
+bd2<-data.frame(fluorescencia_2)
+
+fluorescencia_3 <- read_excel("data/fluorescencia-2.xlsx",sheet = "Riegp.rioclaro2")
+bd3<-data.frame(fluorescencia_3)
+
+fluorescencia_4 <- read_excel("data/fluorescencia-4.xlsx",sheet = "Esperanza.porcentaje")
+tp<-data.frame(fluorescencia_4)
+
+fluorescencia_5 <- read_excel("data/fluorescencia-4.xlsx",sheet = "rioclaro.percentage")
+tp.1<-data.frame(fluorescencia_5)
+
+fluorescencia_6 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Esp.T1")
+bd.t1<-data.frame(fluorescencia_6)
+
+fluorescencia_7 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Esp.T2")
+bd.t2<-data.frame(fluorescencia_7)
+
+fluorescencia_8 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Esp.T3")
+bd.t3<-data.frame(fluorescencia_8)
+
+fluorescencia_9 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Esp.T4")
+bd.t4<-data.frame(fluorescencia_9)
+
+fluorescencia_10 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Rio.T1")
+bd.ri.t1<-data.frame(fluorescencia_10)
+
+fluorescencia_11 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Rio.T2")
+bd.ri.t2<-data.frame(fluorescencia_11)
+
+fluorescencia_12 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Rio.T3")
+bd.ri.t3<-data.frame(fluorescencia_12)
+
+fluorescencia_13 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Rio.T4")
+bd.ri.t4<-data.frame(fluorescencia_13)
+
+fluorescencia_14 <- read_excel("data/fluorescencia-3.xlsx",sheet = "Esperanza.potencial")
+bd<-data.frame(fluorescencia_14)
+
+fluorescencia_15 <- read_excel("data/fluorescencia-3.xlsx",sheet = "RioClaro.potencial")
+bd1<-data.frame(fluorescencia_15)
+
+cereza_3<-read_excel("data/cereza-3.xlsx",sheet = "tratamiento")
+cz<-data.frame(cereza_3)
+
+cereza_4<-read_excel("data/cereza-3.xlsx",sheet = "refrac.trat")
+cz1<-data.frame(cereza_4)
+
+cereza_5<-read_excel("data/cereza-3.xlsx",sheet = "peso.trat")
+cz3<-data.frame(cereza_5)
+
+rioclaro_1<-read_excel("data/rioclaro-8.xlsx",sheet = "apariencia")
+cz4<-data.frame(rioclaro_1)
+
+rioclaro_2<-read_excel("data/rioclaro-8.xlsx",sheet = "refrac")
+cz5<-data.frame(rioclaro_2)
+
+rioclaro_3<-read_excel("data/rioclaro-8.xlsx",sheet = "peso")
+cz6<-data.frame(rioclaro_3)
+
+cereza_6<-read_excel("data/cereza-6.xlsx",sheet = "damage")
+cz7<-data.frame(cereza_6)
+
+rioclaro_4<-read_excel("data/rioclaro-8.xlsx",sheet = "damage")
+cz8<-data.frame(rioclaro_4)
+
+
+```
+
+```{r}
+#| label: load-packages
+#| include: false
+library(multcomp)
+library(ggplot2)
+library(broom)
+library(tidyverse)
+require(ggpubr)
+
+```
+
+```{r}
+#| label: fig-riego-la-esperanza
+#| warning: false
+#| echo: false
+#| fig-cap: "Riego acumulado semanal y total. La  Esperanza"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+a<-ggplot(data=bd2, aes(x=fct_inorder(week), y=irrigation_mm, fill=treatment)) +geom_bar(stat="identity", position=position_dodge())+
+  scale_fill_manual(values=c("royalblue4","lightskyblue","rosybrown2","red3")) +
+  theme_minimal() +  ggtitle("La Esperanza")+xlab("week")
+
+b<-ggplot(data=tp, aes(x=treatment, y=percentage, fill= treatment)) +
+  geom_bar(stat="identity") +
+  scale_fill_manual(values=c("royalblue4","lightskyblue","rosybrown2","red3")) +
+  theme_minimal() +  ggtitle("Total irrigation (%)")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+
+```
+
+En la [@fig-campo-rio-claro]a y [@fig-campo-rio-claro]b se muestran los volúmenes de riego empleados para los diferentes tratamientos en el campo Río Claro. En este caso, T2 representó un 78,3% del total de volumen empleado para T1, mientras que T3 y T4 representaron un 57,3% y un 36,1% respectivamente.
+
+Tanto en la [@fig-riego-la-esperanza]a y [@fig-campo-rio-claro]a , se aprecia como tendencia general, que el mayor volumen de riego se aplicó entre finales de noviembre y finales de diciembre, lo que coincide con el período de ralentizamiento del crecimiento vegatativo, final del período de floración y el desarrollo y expansión del fruto; etapa que ha sido caracterizada como la de mayor demanda hídrica por parte de los cultivo de cereza [@arribillaga2013; @blanco2020a; @blaya2021]
+
+```{r}
+#| label: fig-campo-rio-claro
+#| warning: false
+#| echo: false
+#| fig-cap: "Riego acumulado semanal y total. Río Claro"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+
+a<-ggplot(data=bd3, aes(x=fct_inorder(week), y=irrigation_mm, fill=treatment)) +geom_bar(stat="identity", position=position_dodge())+
+  scale_fill_manual(values=c("royalblue4","lightskyblue","rosybrown2","red3")) +
+  theme_minimal() +  ggtitle("Río Claro")+xlab("week")
+
+b<-ggplot(data=tp.1, aes(x=treatment, y=percentage, fill= treatment)) +
+  geom_bar(stat="identity") +
+  scale_fill_manual(values=c("royalblue4","lightskyblue","rosybrown2","red3")) +
+  theme_minimal() +  ggtitle("Total irrigation (%)")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+```
+
+## Indicadores de potencial hídrico y fluorescencia
+
+Posterior a la instalación del sistema de riego diferenciado, se seleccionaron 3 árboles por tratamiento (un total de 15 árboles por campo) ,teniendo en consideración el efecto de borde, esto con el propósito de monitorear en el tiempo el estatus hídrico de cada planta (3 réplicas por tratamiento). Para ello se emplearon 2 indicadores: 1-Potencial hídrico xilemático al mediodía ; cuyas mediciones son consideradas el proxy más preciso del estado hídrico para los cerezos dulces [@blanco2019a; @blanco2019b; @cb2020b; @cb2020a; @houghton2023]. 2-Fluorescencia; el cual constituye un indicador de eficacia de la actividad e integridad de la fotosíntesis y el contenido de la clorofila; lo que permite estudiar mecanismos de respuesta ante condiciones de estrés hídrico [@linke2010; @jimenez2015].
+
+Para medición de los indicadores anteriormente mencionados se realizaron visitas quincenales a cada campo. En lo que respecta a la medición del potencial hídrico xilemático, la misma se realizó sobre muestras de hojas colectadas entre 12:00-14:00 h provenientes de cada una de los 15 árboles monitoreados. En cada caso, se seleccionaron hojas maduras y en buen estado, ubicadas en el tercio medio del árbol, con orientación este y cercanas al tronco [@mccutchan2019; @marsal2010; @blanco2019a]. Antes de ser cortadas, cada una de ellas fue envuelta por un período de 30 min en bolsas de papel de aluminio, a modo de lograr bloquear la transpiración y la radiación solar. Posterior a este período, cada hoja fue cortada por el pecíolo y colocada al interior de la cámara Scholander conectada a un cilindro de nitrógeno (Modelo 3000, Soil Moisture Equipment, Santa Barbara, CA, EEUU), donde se aplicó presión negativa hasta observar gotas de agua en el extremo del pecíolo cortado, registrándose la cantidad de megapascales (MPa) necesarios para extraer la primera gota de jugo xilemático.
+
+En lo que respecta a la medición de la fluorescencia, se usó el fluorómetro PAR-FluorPen FP 110/D (PSI, Czech), empleando el método de transitorios de fluorescencia OJIP. Este método permitió obtener diferentes parámetros de rendimiento cuántico de la actividad fotosintética en el PSII y evaluar el potencial impacto del riego deficitario sobre este proceso [@kupper2019]. Para obtener una medida de los parámetros de fluorescencia de la clorofila, el fluorómetro consta de un medidor de luz integrado para lecturas digitales directas de la radiación fotosintéticamente activa en el rango 400 a 700 nm. Para lograr una emisión de fluorescencia roja, es necesario exponer a la luz, hojas que previamente se encontraban adaptadas a la oscuridad [@moreno2008]. Con este fin, el equipo consta de unos dispositivos o "clips" , que se colocan en la hoja previamente y que permiten bloquear todo acceso de luz a una porción de la misma. En nuestro caso, se utilizaron 4 clips por árbol del muestreo, los cuales fueron colocados entre las 11:00-13:00 h, seleccionando hojas que se encontrasen maduras, en buen estado, dentro del tercio medio del árbol y orientadas directamente al sol. Pasado el período de adaptación a la oscuridad (20 minutos), se procedió a hacer las mediciones directas con el fluorómetro, el cual dispone de una memoria interna que permite almacenar los datos de manera secuencial. A efecto de los análisis se utilizaron los siguientes indicadores: Fv/Fm (máxima eficiencia quántica del Fotosistema II), Fo (valor mínimo de fluorescencia) y Fv/Fo (razón entre fluorescencia máxima y mínima)
+
+## Cosecha y evaluación de la calidad de la fruta
+
+Las cosechas se llevaron a cabo siguiendo el cronograma y la planificación de Garcés Fruit. Las mismas se realizaron el 12/12 (campo La Esperanza) y el 21/12 (Campo Río Claro) . En ambos casos, se recolectó la totalidad de los frutos de los 15 árboles que componían el muestreo (3 réplicas por tratamiento). El total de la frutas producidas por cada árbol fueron pesadas en campo mediante el empleo de una balanza digital modelo ACS- 30 LED (peso máximo 30 Kg). Posteriormente, utilizando una balanza electrónica modelo SF-400 (peso máximo 10kg) , se colectó al azar el equivalente de un 1kg de cerezas por cada árbol, los cuales fueron almacenados en envases plásticos y refrigerados en coolers para su posterior traslado al laboratorio. El resto de las muestras de cada árbol fueron examinadas de manera meticulosa en su totalidad, contabilizando aquellas cerezas que presentarán deformaciones y defectos en su forma o superficie, tales como pitting, pudrición, fisuras pronunciadas, sobremaduración, daños en la piel, palidez y frutos dobles. Se guardó registro fotográfico de las cerezas identificadas con daños para su posterior revisión y categorización en el laboratorio. Para esta caracterización se usó como base la guía Australian Cherry Quality Guide (disponible: <https://www.cherrygrowers.org.au>).
+
+Una vez en el laboratorio, las muestras de 1 Kg de cerezas por árbol fueron almacenadas en un refrigerador a 4°C. En un plazo menor de 72 h cada una de ellas fue analizada para evaluar la calidad de fruto, de manera de evitar degradaciones relacionadas con el tiempo de almacenamiento. Para ello, se tomó una submuestra al azar de 20 cerezas por árbol, siguiendo una metodología similar a @blanco2019a , para un total de 60 cerezas por tratamiento. La única condición para que una cereza fuese seleccionada, es que la misma se encuentre en buen estado, esto para disminuir la probabilidad de desviaciones relacionadas con daños experimentados durante el traslado e incurrir en el error de medir cerezas defectuosas.
+
+Para evaluar la calidad de las frutas se consideraron las siguientes variables asociadas a los estándares comerciales: peso por unidad (gr), diámetro (mm) y color. Para medir peso (gr) se utilizó una balanza análica de laboratorio, mientras que para estimar el diámetro se empleó un pie de metro digital (0-150mm). En lo que respecta al color, se siguió la carta de color y la metodología recomendada por el Instituto Nacional de Tecnología Agropecuaria (INTA) (disponible en: <https://inta.gob.ar/documentos/carta-de-color-y-calibre-para-la-cosecha-de-cerezas>) . Para ello se empleó una escala numérica del 1-6 , la cual variaba desde un rojo pálido (1) a un caoba oscuro (6). Finalmente, de cada sub-muestra se seleccionaron al azar 5 cerezas adicionales (15 por tratamientos), con las mismas se procedió a medir concentración de sólidos solubles (grados brix) utilizando para ello el refractómetro ATC (Brix 0-32) [@blanco2019a].
+
+## Análisis estadístico
+
+Siguiendo una metodología similar a otros estudios [@marsal2010; @blanco2018; @bhusal2021; @c-b2022], se evaluó los efectos de los tratamientos de riego deficitario sobre la productividad y calidad de la fruta mediante análisis de varianza (ANOVA), empleando test de Shapiro-Wilk para corroborar previamente la existencia de una distribución normal en los datos. Para evaluar la existencia de diferencias significativas entre los diferentes tratamientos se utilizó como análisis post-hoc el Test de Tukey. Todos los análisis se realizaron utilizando el software R.
+
+# Resultados y Discusión
+
+## Potencial hídrico y fluorescencia
+
+En la @fig-riego-campo-la-esperanza-tratamiento0 se muestran las dinámica del potencial hídrico xilemático a mediodía (Ψ) y la eficiencia fotosintética (Fv/Fm) para los cultivos pertenecientes al tratamiento control (T0) en el campo La Esperanza. En la misma, es posible apreciar la evolución de ambos parámetros durante los días transcurridos desde el inicio de los tratamientos y el monitoreo (segunda quincena de octubre) hasta el punto de corte (finales de febrero). Al describir la trayectoria del potencial hídrico (Ψ), se observa que este indicador presenta una caída muy conspicua , aunque irregular, en sus valores desde finales de octubre hasta comienzos de diciembre. De esta manera, los cultivos pasan de una condición en la cual no presentan riesgo de estrés hídrico (Ψ\>-1MPa) a valores de estrés moderado ( -1MPa \>Ψ\>1.5 MPa) [@cb2020b; @c-b2022; @houghton2023]. Este período , que coincide con la recuperación neta de la eficacia fotosintética (Fv/Fm) desde mediados de noviembre, parece corresponder con la etapa de rápido crecimiento y maduración de los frutos, la cual ha sido reportada en Chile, y para la variedad Regina, para comienzos de la segunda quincena de noviembre [@arribillaga2013; @avium2021]. Esta etapa del desarrollo fenológico se caracteriza por un incremento de la actividad fotosintética y por un aumento en el uso de agua [@yoon1990].
+
+A lo largo de diciembre, durante el período de cosecha, se observa que los niveles Ψ se encuentran oscilando cerca del valor mínimo de la serie ( -1.53 MPa), mientras que la eficacia fotosintética (Fv/Fm) se sostienen a niveles relativamente altos si se le compara con el resto del período de interés. Para la etapa de la poscosecha, durante los meses de enero y febrero, cuando tiende a disminuir el consumo del agua y la actividad fotosintética, se ve una leve recuperación neta de los niveles de potencial hídrico (un incremento promedio de 0.20 MPa), mientras que los valores de Fv/Fm, después de una rápida caída durante el mes de enero, presentan un fuerte crecimiento neto durante el mes de febrero, manteniendo niveles comparables a los observados durante el mes de diciembre.
+
+```{r}
+#| label: fig-riego-campo-la-esperanza-tratamiento0
+#| warning: false
+#| echo: false
+#| fig-cap: "Dinámica del potencial hídrico xilématico al mediodía y el indicador de fluorescencia (Fv/Fm).La Esperanza. Riego habitual (T0)"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+ggplot()+ geom_line(data=bd, aes(day, T0.p), colour="azure3")+ geom_line(data=bd, aes(day, T0.Fv_Fm_tp), linetype= "dotted", colour="azure3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T0. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.38, label="Ψ",color="azure3", size=6)+ annotate(geom="text", x=130, y=-0.85, label="Fv/Fm",color="azure3", size=6)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.2, label="october",color="black", size=6) + annotate(geom="text", x=28, y=-0.2, label="november",color="black", size=6) + annotate(geom="text", x= 56, y=-0.2, label="december",color="black", size=6) + annotate(geom="text", x= 83, y=-0.2, label="january",color="black", size=6) + annotate(geom="text", x=110, y=-0.2, label="febrary",color="black", size=6)
+
+
+```
+
+En la @fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia se muestran las dinámicas del potencial hídrico (Ψ) y eficacia fotosintética (Fv/Fm) de los cultivos que experimentaron los 4 tipos de tratamiento de irrigación deficitaria. En ellos se aprecia que, a pesar de las diferencias observadas en los volúmenes de riego empleados en cada uno de ellos ([@fig-riego-la-esperanza]) , los potenciales en ninguno de los tratamientos alcanzan valores de estrés hídrico significativamente severos a lo largo de toda la serie (-1.5MPa\<Ψ\<-2 MPa) [@c-b2022]. En este sentido, similar a lo observado en T0, para todos los tratamientos los niveles de potencial más bajos se observaron durante el mes de diciembre (pre-cosecha), siendo el diferencial con respecto al mínimo de T0 un valor entre -0,03 MPa y -0.098, donde el potencial mínimo se observó para T2 (-1.639 MPa). Por su parte, en lo que respecta a la fluorescencia (Fv/Fm), tampoco se observaron mayores diferencias a lo largo de todo el período de interés entre los diferentes tratamientos, obteniéndose al estimar la razón del indicador Fv/Fm de cada tratamiento vs T0 para todos los tiempos, valores variables dentro de un margen de 1.23-0.91 (una variación máxima aproximada del 20% o 0,2 unidades) . La gran excepción a esta tendencia lo constituye el tratamiento T2 ([@fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia]b), cuyos cultivos arrojaron para comienzos de diciembre una medición de Fv/Fm que fue casi 3 veces mayor al presentado por T0, lo que parece constituir un dato atípico.
+
+Con respecto al cambio en el tiempo de los indicadores, se puede observar en la [@fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia], que los distintos tratamientos presentan, como tendencia general, un comportamiento similar a los cultivos T0. En tal sentido, durante el mes de noviembre y/o comienzos de diciembre, se aprecian caídas netas en los respectivos valores de Ψ , junto con un repunte marcado de la eficiencia fotosintética (Fv/Fm), coincidiendo este comportamiento con la etapa de expansión y maduración de los frutas. Posterior a este período, para los tratamientos T1, T3 y T4 ([@fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia]a, [@fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia]c y [@fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia]d) se observa que para finales de diciembre y hasta finales de febrero, se sostienen de manera paralela altos valores relativos de fluorescencia con niveles bajos de potencial. Esto sugiere un solapamiento entre una fuerte actividad fotosintética, cercana a los valores máximos dentro del período de interés, lo que es especialmente notorio en T4 ([@fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia]d), y niveles de estrés hídrico moderados ( -1.2MPa\<Ψ\<-1.6 MPa). Esto último parece coincidir con patrones reportados en algunos estudios, en donde los cerezos presentan en determinadas etapas una reacción estomática lenta ante el umbral del potencial hídrico, lo que genera cierta propensión a experimentar un estrés moderado, aún cuando el cierre estomático representa el principal mecanismo fisiológico para regular la transpiración y conservar el agua [@yoon1990; @blaya2021; @houghton2023]. La gran excepción al proceso anteriormente descrito lo constituyen las plantas sometidas al T2 ([@fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia]b), en donde más allá de un dato atípico a comienzos de diciembre, el resto del período presentó valores de fluorescencia relativamente invariantes, sin que se observarán altos valores relativos sostenidos en las distintas etapas fenológicas.
+
+```{r}
+#| label: fig-esperanza-dinámica-del-potencial-hídrico-y-la-fluorescencia
+#| warning: false
+#| echo: false
+#| fig-cap: "Dinámica del potencial hídrico xilématico al mediodía y el indicador de fluorescencia (Fv/Fm).La Esperanza.Tratamientos"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+a<-ggplot()+ geom_line(data=bd, aes(day, T1.p), colour="royalblue4")+ geom_line(data=bd, aes(day, T1.Fv_Fm_tp), linetype= "dotted", colour="royalblue4", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T1. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.38, label="Ψ",color="royalblue4", size=3)+ annotate(geom="text", x=130, y=-0.85, label="Fv/Fm",color="royalblue4", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.2, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.2, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.2, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.2, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.2, label="febrary",color="black", size=3)
+
+b<-ggplot()+ geom_line(data=bd, aes(day, T2.p), colour="lightskyblue")+ geom_line(data=bd, aes(day, T2.Fv_Fm_tp), linetype= "dotted", colour="lightskyblue", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T2. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.56, label="Ψ",color="lightskyblue", size=3)+ annotate(geom="text", x=130, y=-1.35, label="Fv/Fm",color="lightskyblue", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+c<-ggplot()+ geom_line(data=bd, aes(day, T3.p), colour="rosybrown2")+ geom_line(data=bd, aes(day, T3.Fv_Fm_tp), linetype= "dotted", colour="rosybrown2", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T3. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="rosybrown2", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fv/Fm",color="rosybrown2", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+d<-ggplot()+ geom_line(data=bd, aes(day, T4.p), colour="red3")+ geom_line(data=bd, aes(day,T4.Fv_Fm_tp), linetype= "dotted", colour="red3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T4. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="red3", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fv/Fm",color="red3", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+ggarrange(a, b, c, d,labels = c("A", "B","C","D"),ncol = 2, nrow = 2)
+
+
+
+```
+
+En lo que respecta al campo Río Claro, en la @fig-riego-campo-rio-claro-tratamiento-0 se muestra la evolución en el tiempo de los indicadores de potencial y fluorescencia de los cultivos que recibieron riego habitual según la práctica de los productores locales (T0). Si se le compara con la dinámica de las variables mostradas en la [@fig-riego-la-esperanza], se observa que durante el mes de noviembre, de manera similar a los cultivos T0 del campo La Esperanza, existe una caída neta, aunque más pronunciada, de los valores de Ψ. En el caso de Río Claro, estos valores de Ψ alcanzan valores de -1.7MPa para la segunda mitad del mes de noviembre, lo que es considerado un nivel de estrés entre moderado y severo para plantaciones de cerezos [@c-b2022]. Entre finales de noviembre y mediados de diciembre, los niveles de Ψ oscilan alrededor de -1.5 MPa (valor umbral del estrés moderado), para posteriormente, durante el período postcosecha, presentar un importante ascenso hasta comienzos del mes de enero. Finalmente, este indicador experimenta una disminución neta hasta la segunda quincena de febrero, pasando de -1.15 a -1.69 MPa entre enero y la última medición de la serie. Por otro lado, el indicador de fluorescencia, en cuanto a tendencia general, pareciera seguir un comportamiento relativamente similar al descrito para la [@fig-riego-la-esperanza], con un importante ascenso de la eficacia fotosintética durante la segunda mitad del mes de noviembre, y con un sostenimiento entorno a valores máximos durante el mes de diciembre. Posterior al período de cosecha, a partir del mes de enero, se observa un descenso progresivo en los valores de Fv/Fm.
+
+```{r}
+#| label: fig-riego-campo-rio-claro-tratamiento-0
+#| warning: false
+#| echo: false
+#| fig-cap: "Dinámica del potencial hídrico xilématico al mediodía y el indicador de fluorescencia (Fv/Fm).Río Claro. Riego habitual (T0)"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+ggplot()+ geom_line(data=bd1, aes(day, T0.p), colour="azure3")+ geom_line(data=bd1, aes(day, T0.Fv_Fm_t), linetype= "dotted", colour="azure3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T0. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.6, label="Ψ",color="azure3", size=6)+ annotate(geom="text", x=130, y=-1.30, label="Fv/Fm",color="azure3", size=6)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.2, label="october",color="black", size=6) + annotate(geom="text", x=28, y=-0.2, label="november",color="black", size=6) + annotate(geom="text", x= 56, y=-0.2, label="december",color="black", size=6) + annotate(geom="text", x= 83, y=-0.2, label="january",color="black", size=6) + annotate(geom="text", x=110, y=-0.2, label="febrary",color="black", size=6)
+
+```
+
+En la @fig-rio-claro-dinámica-del-potencial-hídrico-y-la-fluorescencia se muestra la medición en el tiempo de los indicadores de potencial hídrico y fluorescencia para los 4 tratamientos de riego deficitario en el campo Río Claro. En este caso, a diferente de lo observado para el campo La Esperanza, en todos los tratamientos se obtuvieron valores de Ψ que han sido asociados a condiciones de estrés de moderado a severo (-1.5MPa\<Ψ\<-2 MPa) y de severo a crítico (Ψ\<-2 MPa) en cerezos [@cb2020b; @c-b2022]. Prácticamente los 4 tratamientos presentaron niveles de Ψ por debajo de -1.5 MPa desde el mes de diciembre y hasta el final de la serie (con breves y puntuales excepciones en el caso de T2 y T4).
+
+En el caso de T1 ([@fig-rio-claro-dinámica-del-potencial-hídrico-y-la-fluorescencia]a), se aprecia que luego de presentar valores de Ψ máximo cercanos a -0.6MPa, el indicador muestra una marcada trayectoria ascendente hasta mediados de noviembre, cuando alcanza un valor de de -1.5MPa. Luego de una recuperación durante la segunda mitad de noviembre, el Ψ cae de forma muy conspicua a lo largo de todo diciembre, coincidiendo con la última etapa de expansión del fruto y con el período de cosecha, alcanzando niveles de -2.44 MPa. Después de una recuperación sostenida durante el mes de enero y la primera quincena de febrero (postcosecha), el potencial vuelve a caer hacia el final de la serie, equiparando valores similares al mínimo (-2.39 MPa). Los cultivos T2 ([@fig-rio-claro-dinámica-del-potencial-hídrico-y-la-fluorescencia]b), a diferencia de T1, experimentan una sostenida e irregular caída de los valores de Ψ entre finales de octubre y finales de de enero (con un ligero aumento a comienzos de mes), cuando alcanza valores mínimos críticos de -2.818 MPa. Entre finales de enero y comienzos de febrero, los cultivos de T2 presentaron un Ψ promedio de (-2.01 MPa). En el mes de febrero estos cultivos, si bien presentan un incremento neto en los valores de potencial, el mismo no supera los umbrales de estrés severo al final de la serie (-2.07 MPa). T3 y T4 ([@fig-rio-claro-dinámica-del-potencial-hídrico-y-la-fluorescencia]c y [@fig-rio-claro-dinámica-del-potencial-hídrico-y-la-fluorescencia]d) presentan trayectorias de Ψ comparables, con caídas muy notorias desde finales de octubre hasta finales de diciembre (posterior al período de cosecha). Durante la última quincena de diciembre, los valores de potencial alcanzan un umbral de estrés de severo a crítico (Ψ\<-2 MPa), teniendo a comienzos de enero valores mínimos de -3.031 MPa (T3) y -2.823 (T4). Finalmente, en los últimos dos meses del período de interés, ambos cultivos registran dinámicas ascendentes en sus medidas de Ψ, siendo esta más marcada en el caso de T4. En este sentido, a pesar del aumento neto, los cultivos de T3 registran al final de la serie valores que sugieren estrés hídrico severo (-1,901 MPa), mientras que T4 presenta valores cercanos al umbral de estrés moderado (-1.438 MPa).
+
+En lo que respecta a las dinámicas del indicador de fluorescencia, en el caso de Río Claro, se aprecian diferencias más marcadas entre la eficacia fotosintética de los cultivos control (T0) y los tratamientos de riego deficitario. Esto es especialmente notorio para T3, donde las razones del indicador Fv/Fm entre T3:T0 para todo el período alcanzan valores que oscilan entre 1.32 y 0.66 ( lo que implica variaciones cercanas al 33%). Pese a ello, similar a lo observado para el campo La Esperanza, en todos los tratamientos se registró que, durante el período de expansión y maduración de los frutos, los niveles de eficacia fotosintética fluctuaron alrededor de los niveles máximos, esto de manera independiente a los registros del Ψ ([@fig-rio-claro-dinámica-del-potencial-hídrico-y-la-fluorescencia]).
+
+```{r}
+#| label: fig-rio-claro-dinámica-del-potencial-hídrico-y-la-fluorescencia
+#| warning: false
+#| echo: false
+#| fig-cap: "Dinámica del potencial hídrico xilématico al mediodía y el indicador de fluorescencia (Fv/Fm).Río Claro.Tratamientos"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+a<-ggplot()+ geom_line(data=bd1, aes(day, T1.p), colour="royalblue4")+ geom_line(data=bd1, aes(day, T1.Fv_Fm_t), linetype= "dotted", colour="royalblue4", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T1. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-2.25, label="Ψ",color="royalblue4", size=3)+ annotate(geom="text", x=130, y=-1.75, label="Fv/Fm",color="royalblue4", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.5, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.5, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.5, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.5, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.5, label="febrary",color="black", size=3)
+
+b<-ggplot()+ geom_line(data=bd1, aes(day, T2.p), colour="lightskyblue")+ geom_line(data=bd1, aes(day, T2.Fv_Fm_t), linetype= "dotted", colour="lightskyblue", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T2. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.9, label="Ψ",color="lightskyblue", size=3)+ annotate(geom="text", x=132, y=-1.75, label="Fv/Fm",color="lightskyblue", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+c<-ggplot()+ geom_line(data=bd1, aes(day, T3.p), colour="rosybrown2")+ geom_line(data=bd1, aes(day, T3.Fv_Fm_t), linetype= "dotted", colour="rosybrown2", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T3. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-2.0, label="Ψ",color="rosybrown2", size=3)+ annotate(geom="text", x=130, y=-1.35, label="Fv/Fm",color="rosybrown2", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.5, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.5, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.5, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.5, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.5, label="febrary",color="black", size=3)
+
+d<-ggplot()+ geom_line(data=bd1, aes(day, T4.p), colour="red3")+ geom_line(data=bd1, aes(day,T4.Fv_Fm_t), linetype= "dotted", colour="red3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T4. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="red3", size=3)+ annotate(geom="text", x=130, y=-1.92, label="Fv/Fm",color="red3", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+ggarrange(a, b, c, d,labels = c("A", "B","C","D"),ncol = 2, nrow = 2)
+
+
+```
+
+La descripción de la dinámica de los indicadores de potencial hídrico (potencial hídrico xilemático a mediodía) y fluorescencia ( eficacia fotosintética Fv/Fm) durante el período de interés muestra la relevancia de la fenología en la trayectoria de estas variables. De esta manera se observa que los valores de Fv/Fm tienden a aumentar de manera notoria, y a permanecer cerca de valores máximos, durante el período de expansión y maduración de los frutos (noviembre/diciembre), incluso en períodos en donde los valores de Ψ se encuentran a niveles muy bajos en términos relativos. Por su parte, los valores de Ψ , además del ciclo fenológico, parece responder a la distribución del riego semanal ( fig.supl:1-8), donde mayores volúmenes de agua implementada, parece relacionarse con aumentos en los niveles del potencial hídrico. Sin embargo, no parece existir mayor correspondencia entre el volumen de irrigación semanal empleado y los niveles de Fv/Fm. Si bien durante mediados de noviembre, la fluorescencia se solapa (con cierto delay) a incrementos en el riego, luego se desacopla en las semanas subsiguientes, manteniendo valores de eficacia fotosintética altos durante finales de noviembre, diciembre y parte de enero, a pesar de la disminución de la irrigación(fig.supl: 1-8). Es importante destacar que las tendencias descritas anteriormente para la fluorescencia son independientes del indicador utilizado y que comportamientos similares se obtienen al utilizar como proxys Fo y Fv/Fo (fig.supl: 9-12). En futuras entregas se buscará ahondar en estas relaciones mediante el empleo de modelos mixtos [@houghton2023].
+
+## Producción y parámetros de calidad de la fruta
+
+Para evaluar el impacto del riego deficitario sobre la producción y calidad de la fruta se consideraron diferentes parámetros, entre ellos: peso de una cereza, diámetro de una fruta, color, concentración de azúcares solubles y producción total de frutas por árbol (medida en Kg).
+
+### La Esperanza
+
+Con respecto al parámetro peso de la unidad de cereza (en gr) ([@fig-laesperanza-calidad-peso-de-unidad-de-cereza]a) se observa que, para cada uno de los distintos tratamientos, tanto la media (esfera blanca) como la mediana (línea negra del boxplot) están por encima de la talla del estándar comercial XL (6gr). Sólo algunas cerezas pertenecientes al tratamiento T1 y T2 se encuentran por debajo de la talla XL y L (4gr). Al realizar los Test Tukey entre los distintos tratamientos obtenemos que las cerezas del T4 (x= 11.65kg) son significativamente más pesadas que las cerezas del T0 ( aproximadamente 0.99gr más pesadas; CI 95%: 0.07-1.9grs ) , T1 (0.95gr; CI 95%: 0.04-1.9grs) y T2 ( 1.78gr; CI 95%: 0.86-2.7grs) ([@fig-laesperanza-calidad-peso-de-unidad-de-cereza]b). Al mismo tiempo, al combinar los efectos de los tratamientos con mayor déficit hídrico (T3&T4) y compararlo con los tratamientos que emplean mayor volumen de irrigación (T1&T2), se observa que las cerezas de los primeros son significativamente de mayor peso (aproximadamente 0.93gr más) que las provenientes de los segundos ([@fig-laesperanza-calidad-peso-de-unidad-de-cereza]c).
+
+```{r}
+#| label: fig-laesperanza-calidad-peso-de-unidad-de-cereza
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación del peso de una unidad de cereza (gr) entre los distintos tratamientos.La Esperanza"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz, aes(x= treatment, y= weight.gr., fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= weight.gr.),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+ geom_hline(yintercept = 4, colour="blue", linetype="dotted")+ geom_hline(yintercept = 6, colour="red", linetype="dotted")+labs(title = "Cherry weight (La Esperanza)")+geom_text(aes(label="L", y= 4.4, x= "T4"))+geom_text(aes(label="XL", y= 6.4, x= "T4"))
+
+cz<-as.data.frame(unclass(cz), stringsAsFactors = TRUE)
+m1=lm(weight.gr.~treatment, data=cz)
+m1.post=glht(m1, linfct=mcp(treatment ="Tukey"))
+
+#| fig-width: 5
+#| fig-height: 3
+
+b<-ggplot(confint(m1.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+
+m1.post2=glht(m1, linfct=mcp(treatment =contr.mat))
+
+#| fig-width: 5
+#| fig-height: 3
+
+c<-ggplot(confint(m1.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+
+
+
+
+```
+
+En la [@fig-laesperanza-calidad-diámetro-de-unidad-de-cereza]a se muestra de manera comparada los diámetros de las cerezas (mm) provenientes de cultivos sometidos a cada uno de los diferentes tratamientos. Similar a lo observado con el parámetro peso, todas las medias y las medianas de las cerezas estuvieron por arriba de los estándares comerciales XL (24 mm) y L (22 mm). Pese a ello, al apreciar la dispersión de los datos, se observa que un número considerable de las muestras de cerezas provenientes de T0, T1 , T2 y T3 se encuentran por debajo de la medida XL. Sólo las cerezas provenientes de cultivos bajos el tratamiento T4 presentaron en su totalidad diámetros mayores a este parámetro comercial. Nuevamente, al realizar las comparaciones a través del Test de Tukey, se obtiene que las cerezas T4 (x=27.39 mm) presentan un diámetro significativamente mayor a las frutas del T2 (2.40 mm; CI 95%: 1.39-3.42 mm)y T3 (1.36mm, CI 95%: 0.34-2.37 mm) ([@fig-laesperanza-calidad-diámetro-de-unidad-de-cereza]b). La cerezas T2 son las frutas más pequeñas (x= 24.98 mm), observándose diferencias, además de con T4, con T0 (-1.77mm menos de diámetro; CI 95%: -2.78- -0.76 mm), T1 (-1.48 mm; CI 95%: -2.49- -0.47 mm) y T3 (-1.05 mm; CI 95%: -2.06--0.03 mm) (fig 8b). Al combinar los efectos de los tratamientos se obtiene que las cerezas del tratamiento control T0 y la de los tratamientos con menor irrigación (T3-T4) tienen un diámetro significativamente más grandes que las cerezas de T1&T2 (1.03 y 0.98 mm más de manera respectiva) ([@fig-laesperanza-calidad-diámetro-de-unidad-de-cereza]c).
+
+```{r}
+#| label: fig-laesperanza-calidad-diámetro-de-unidad-de-cereza
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación del diámetro de una unidad de cereza (mm) entre los distintos tratamientos.La Esperanza"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz, aes(x= treatment, y= diameter.mm., fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= diameter.mm.),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+ geom_hline(yintercept = 22, colour="blue", linetype="dotted")+ geom_hline(yintercept = 24, colour="red", linetype="dotted")+labs(title = "Cherry diameter (La Esperanza)")+geom_text(aes(label="L", y= 21.6, x= "T4"))+geom_text(aes(label="XL", y= 23.6, x= "T4"))
+
+m2=lm(diameter.mm.~treatment, data=cz)
+m2.post=glht(m2, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m2.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+
+m2.post2=glht(m2, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m2.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+```
+
+En lo que respecta al color, las tonalidades caobas suelen ser las de mayor valoración económica. Dentro de la escala numérica utilizada en base a la carta de colores del INTA, estas tonalidades corresponden a un intervalo entre 4-5. En la [@fig-laesperanza-calidad-color-de-unidad-de-cereza]a se muestra la comparación de los colores de las cerezas provenientes de diferentes tratamientos. En ella se aprecia que, para todos los tratamientos, la media y la mediana se encuentran dentro del rango de mayor valoración comercial. Sin embargo, es importante destacar que las frutas del T4 son las que presentan menores desviaciones del umbral estándar. Por su parte, las cerezas T2 (x= 4.2 ) presentan una coloración más clara de manera significativa en comparación con T0 ( -0.52; CI95%: -0.89- -0,16), T1 (-0.38; CI 95%: -0.74- -0.02) y T4. (-0.66; CI 95%: -0.31- -1.03) ([@fig-laesperanza-calidad-color-de-unidad-de-cereza]b). Al mismo tiempo se aprecia, en la [@fig-laesperanza-calidad-color-de-unidad-de-cereza]c, que los tratamientos con mayor riego deficitario (T3&T4) presentaron de manera combinada leves coloraciones más intensas que los tratamientos que emplearon mayores volúmenes de irrigación (T2&T1) (0.30).
+
+```{r}
+#| label: fig-laesperanza-calidad-color-de-unidad-de-cereza
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación del color de cerezas  entre los distintos tratamientos.La Esperanza"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz, aes(x= treatment, y= color, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= color),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+ geom_hline(yintercept = 4, colour="red", linetype="dotted")+ geom_hline(yintercept = 5, colour="red", linetype="dotted")+labs(title = "Cherry colors (La Esperanza)")+geom_text(aes(label="Mahogany", y= 3.8, x= "T4"))
+
+m3=lm(color~treatment, data=cz)
+m3.post=glht(m3, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m3.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+m3.post2=glht(m3, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m3.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+
+```
+
+En la [@fig-laesperanza-calidad-grados-brix]a se muestra la concentración de sólidos solubles (grados brix) de las cerezas provenientes de los diferentes tratamientos. En ella se aprecia que la media de T0, T1,T2 y T3 están por arribar del intervalo del estándar comercial (19-20 grados brix). La misma tendencia, con excepción de T0, se observa para las medianas de dichos tratamientos. Sólo T4 presenta ambas medidas de tendencia central dentro del estándar comercial ideal. Pese a estas diferencias descriptivas, únicamente se observó diferencias significativas entre la concentración de azúcares de T3 (x=23.62 ° brix) con respecto a T0 (3.26 ° brix más; CI 95%: 0.22-6.31° brix) y T4 (3.57° brix; CI 95%: 0.53-6.61 °brix) ([@fig-laesperanza-calidad-grados-brix]b y [@fig-laesperanza-calidad-grados-brix]c).
+
+```{r}
+#| label: fig-laesperanza-calidad-grados-brix
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación de la concentración de sólidos solubres en cerezas entre los distintos tratamientos.La Esperanza"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz1, aes(x= treatment, y= brix, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= brix),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+ geom_hline(yintercept = 19, colour="red", linetype="dotted")+ geom_hline(yintercept = 20, colour="red", linetype="dotted")+labs(title = "Cherry soluble solids concentration (La Esperanza)")+geom_text(aes(label="optimal Brix°", y= 18.6, x= "T3"))
+
+cz2<-as.data.frame(unclass(cz1), stringsAsFactors = TRUE)
+
+m4=lm(brix~treatment, data=cz2)
+m4.post=glht(m4, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m4.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+m4.post2=glht(m4, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m4.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+
+```
+
+Al comparar la productividad total en Kg de frutos por árbol, no se observó ninguna diferencia significativa entre cultivos sometidos a las diferentes estrategias de riego ([@fig-laesperanza-calidad-producción-total-por-árbol]).
+
+```{r}
+#| label: fig-laesperanza-calidad-producción-total-por-árbol
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación de la productividad de cerezas por árbol (Kg).La Esperanza"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz3, aes(x= treatment, y= production.Kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= production.Kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Production per tree (La Esperanza)")
+
+cz3<-as.data.frame(unclass(cz3), stringsAsFactors = TRUE)
+
+m5=lm(production.Kg~treatment, data=cz3)
+m5.post=glht(m5, linfct=mcp(treatment ="Tukey"))
+
+
+b<-ggplot(confint(m5.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+m5.post2=glht(m5, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m5.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+
+
+```
+
+### Río Claro
+
+A diferencia de lo observado en el campo La Esperanza, en el campo Río Claro se encontró que existe un número importante de cerezas, provenientes de cultivos donde se aplicó riego deficitario, que presentan un peso por debajo del estándar comercial XL ([@fig-ríoclaro-calidad-peso-de-unidaddecereza]a). Esto último es especialmente notorio en T3, donde tanto la media como la mediana se encuentran cerca del valor umbral. Al evaluar las diferentes estadísticas entre los tratamientos, encontramos que las cerezas T0 (x=10.39gr ) son las registran un mayor peso, mientras que las T3 (x=5.75gr) son las más livianas ([@fig-ríoclaro-calidad-peso-de-unidaddecereza ]b). Si se considera los efectos combinados de los distintos tratamientos ([@fig-ríoclaro-calidad-peso-de-unidaddecereza]c) se observa que las cerezas T0 son más pesadas que el promedio de T1-T4 (3.30 gr más pesadas; CI 95%: 2.6-4 gr), T1&T2 (2.8gr; CI 95%: 2.03-3.57gr) y T3&T4 (3.80gr; CI 95%: 3.04-4.58gr). A su vez, las cerezas de los cultivos de T1&T2 (x =7.59 gr) son más pesadas que las provenientes de estrategias de riego más deficitario T3&T4 (1.01 gr; CI 95%: 0.38-1.64gr).
+
+```{r}
+#| label: fig-ríoclaro-calidad-peso-de-unidaddecereza
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación del peso de una unidad de cereza (gr) entre los distintos tratamientos.Río Claro"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz4, aes(x= treatment, y= weight.gr, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= weight.gr),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+ geom_hline(yintercept = 4, colour="blue", linetype="dotted")+ geom_hline(yintercept = 6, colour="red", linetype="dotted")+labs(title = "Cherry weight (Río Claro)")+geom_text(aes(label="L", y= 4.4, x= "T4"))+geom_text(aes(label="XL", y= 6.4, x= "T4"))
+
+cz4<-as.data.frame(unclass(cz4), stringsAsFactors = TRUE)
+m6=lm(weight.gr~treatment, data=cz4)
+m6.post=glht(m6, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m6.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+m6.post2=glht(m6, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m6.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+```
+
+Al analizar el parámetro diámetro observamos que únicamente las cerezas de los tratamientos T0 y T1 tienen medidas de tendencia central por arriba del estándar comercial XL (24 mm), mientras que T3 registran valores medios por debajo de la talla L (22 mm) ([@fig-ríoclaro-calidad-diámetro-de-unidad-de-cereza]a). Similar a lo que se observó con el peso, las cerezas del T0 (x=27.36 mm) son las que presentan mayores tallas de manera significativa, mientras que las T3 son las de menor diámetro (x=21.46mm). Además, las frutas de T1 (X= 24.82 MM) tienen mayor diámetro que T2 (1.52 mm más) y T4 (1.31 mm) ([@fig-ríoclaro-calidad-diámetro-de-unidad-de-cereza]b). Por otro lado, al evaluar los análisis combinados, se obtiene nuevamente que las cerezas T0 tienen mayor diámetro que los promedios de T1-T4 (4.08 mm más; CI 95%: 3.25-4.9 mm), T1&T2 (3.29 mm; CI 95%: 2.38-4.2 mm) y T3&T4 (4.87 mm; CI 95%: 3.96-5.78 mm), mientras que T1&T2 (x= 24.06 mm )presenta mayor talla que T3&T4 (1.57 mm; CI 95%: 0.83-2.32 mm) ([@fig-ríoclaro-calidad-diámetro-de-unidad-de-cereza]c).
+
+```{r}
+#| label: fig-ríoclaro-calidad-diámetro-de-unidad-de-cereza
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación del diámetro de una unidad de cereza (mm) entre los distintos tratamientos.Río Claro"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz4, aes(x= treatment, y= diameter.mm, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= diameter.mm),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+ geom_hline(yintercept = 22, colour="blue", linetype="dotted")+ geom_hline(yintercept = 24, colour="red", linetype="dotted")+labs(title = "Cherry diameter (Río Claro)")
+
+m7=lm(diameter.mm~treatment, data=cz4)
+m7.post=glht(m7, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m7.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+m7.post2=glht(m7, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m7.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+
+
+```
+
+En lo que respecta al color, en la [@fig-ríoclaro-calidad-comparación-del-color-de-la-cereza]a se aprecia que si bien las medias y las medianas de las cerezas de todos los tratamientos se encuentran dentro del rango comercial estándar, los tratamientos T2, T3 y T4 presentan un número importante de frutas que poseen una coloración subóptima. En consonancia con esta observación, el análisis estadístico muestra que las cerezas provenientes de estos tratamientos presentan una escala de coloración menor que T0 (x=4.79) y T1 (x= 4.73) ([@fig-ríoclaro-calidad-comparación-del-color-de-la-cereza]b). Al contrastar los efectos combinados se obtiene que las cerezas T0 tienen colores más intensos que el promedio de T1-T4 (0.41) y T3&T4 (0.58), mientras que las cerezas provenientes de tratamientos de riego que emplean mayor volumen de agua (T1&T2) presentan colores más cercanos al caoba intensos que aquellas que experimentan riegos más deficitarios (T3&T4) (0.35) ([@fig-ríoclaro-calidad-comparación-del-color-de-la-cereza]c).
+
+```{r}
+#| label: fig-ríoclaro-calidad-comparación-del-color-de-la-cereza
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación del color de las cerezas entre los distintos tratamientos.Río Claro"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz4, aes(x= treatment, y= color, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= color),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+ geom_hline(yintercept = 4, colour="red", linetype="dotted")+ geom_hline(yintercept = 5, colour="red", linetype="dotted")+labs(title = "Cherry colors (Río Claro)")+geom_text(aes(label="Mahogany", y= 3.8, x= "T4"))
+
+m8=lm(color~treatment, data=cz4)
+m8.post=glht(m8, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m8.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+m8.post2=glht(m8, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m8.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+```
+
+En la [@fig-ríoclaro-calidad-gradosbrix]a se muestra la distribución de la concentración de sólidos solubles para las cerezas muestras provenientes de cada uno de los tratamientos de riego. En la misma se puede apreciar como prácticamente todas las medidas de tendencia central caen fuera del umbral óptimo de grados brix. Únicamente las medianas de la frutas de T0 y T1 presentan valores dentro del estándar comercial. El caso de las cerezas de T4 es excepcional, ya que estas frutas presentan una concentración de azúcares (x= 22.35 °brix) que supera de manera estadísticamente significativa a las provenientes del resto de los tratamientos, a la vez que posee niveles por encima de los valores considerados como óptimos ([@fig-ríoclaro-calidad-gradosbrix]b). Como consecuencia de ello, al evaluar los efectos combinados, T3&T4 presentan mayor concentración de sólidos solubles que T0 (3.57° brix más) y el promedio de T1&T2 (4.19° brix) ([@fig-ríoclaro-calidad-gradosbrix]c).
+
+```{r}
+#| label: fig-ríoclaro-calidad-gradosbrix
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación de la concentración de sólidos solubres en cerezas entre los distintos tratamientos.Río Claro"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz5, aes(x= treatment, y= brix, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= brix),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+ geom_hline(yintercept = 19, colour="red", linetype="dotted")+ geom_hline(yintercept = 20, colour="red", linetype="dotted")+labs(title = "Cherry soluble solids concentration (Río Claro)")+geom_text(aes(label="optimal Brix°", y= 18.6, x= "T4"))
+
+cz5<-as.data.frame(unclass(cz5), stringsAsFactors = TRUE)
+m9=lm(brix~treatment, data=cz5)
+m9.post=glht(m9, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m9.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+
+m9.post2=glht(m9, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m9.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+
+```
+
+En el campo Río Claro, similar a lo observado en La Esperanza, las distintas estrategias de riego entre los tratamientos no se tradujo en diferencias significativas en términos de productividad de frutas por árbol ([@fig-río-claro-calidad-producción-totalporárbol]).
+
+```{r}
+#| label: fig-río-claro-calidad-producción-totalporárbol
+#| warning: false
+#| echo: false
+#| fig-cap: "Comparación de la productividad de cerezas por árbol (Kg).Río Claro"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz6, aes(x= treatment, y= production.Kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x=treatment, y= production.Kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Production per tree (Río Claro)")
+
+cz6<-as.data.frame(unclass(cz6), stringsAsFactors = TRUE)
+m10=lm(production.Kg~treatment, data=cz6)
+m10.post=glht(m10, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m10.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+m10.post2=glht(m10, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m10.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+```
+
+## Daños fisiológicos en cerezas
+
+En ninguno de los campos se encontró diferencias estadísticamente significativas entre los distintos tratamientos al comparar la proporción total de cerezas con daños (forma y superficie) por Kgr de frutas producidas por árbol ([@fig-laesperanza-defectos-de-cerezas] y [@fig-ríoclaro-defectosdecerezas]). Tampoco se encontraron diferencias al analizar de manera particularizada las distintas categorías: pitting/daño en la piel, cerezas dobles, con pudrición, sobremaduración, fisuras longitudinales y palidez (fig. supl 13 y 14).
+
+```{r}
+#| label: fig-laesperanza-defectos-de-cerezas
+#| warning: false
+#| echo: false
+#| fig-cap: "Proporción de cerezas con daños por Kg producido por tratamiento.La Esperanza"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz7, aes(x= treatment, y= total.damage.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= total.damage.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Number of cherries with damage per Kg  (La Esperanza)")
+
+cz7<-as.data.frame(unclass(cz7), stringsAsFactors = TRUE)
+m11=lm(total.damage.kg~treatment, data=cz7)
+m11.post=glht(m11, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m11.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+
+m11.post2=glht(m11, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m11.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+```
+
+```{r}
+#| label: fig-ríoclaro-defectosdecerezas
+#| warning: false
+#| echo: false
+#| fig-cap: "Proporción de cerezas con daños por Kg producido por tratamiento.Río Claro"
+#| fig-width: 10
+#| fig-height: 8
+#| fig-pos: '!ht'
+
+a<-ggplot(cz8, aes(x= treatment, y= total.damage.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= total.damage.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Number of cherries with damage per Kg  (Río Claro)")
+
+cz8<-as.data.frame(unclass(cz8), stringsAsFactors = TRUE)
+m19=lm(total.damage.kg~treatment, data=cz8)
+m19.post=glht(m19, linfct=mcp(treatment ="Tukey"))
+
+b<-ggplot(confint(m19.post), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+d1=c(1,-0.25,-0.25, -0.25,-0.25)
+d2=c(1,-0.5,-0.5,0,0)
+d3=c(1,0,0,-0.5,-0.5)
+d4=c(0,0.5,0.5,-0.5,-0.5)
+
+contr.mat=rbind("T0 vs avg of T1-T4"=d1,"T0 vs avg of T1 & T2"=d2, "T0 vs avg of T3 & T4"= d3, "avg of T2 & T1 vs avg of T3 & T4"= d4)
+m19.post2=glht(m19, linfct=mcp(treatment =contr.mat))
+
+c<-ggplot(confint(m19.post2), aes (x=lhs, y= estimate, ymin=lwr, ymax=upr))+geom_point(size=3)+geom_errorbar(width=0.1)+geom_hline(yintercept=0, colour="red", linetype="dotted") +coord_flip()+labs(x="Comparison", y="Mean difference, 95% CI")+theme_bw()
+
+ggarrange(a,ggarrange(b, c, ncol = 2, labels = c("B", "C")),nrow = 2,labels = "A") 
+
+```
+
+A modo de síntesis, los resultados obtenidos en el campo la Esperanza coinciden con los hallazgos realizados por varios estudios donde se ensayaron tratamientos de riego deficitario en cerezos. En ellos se observa que una irrigación que genera estrés hídrico moderado ( -1MPa \>Ψ\>-1.5 MPa) no afecta ni la productividad ni la calidad de la cereza, e incluso puede llegar a mejorarla en algunos parámetros [@marsal2010; @blanco2020a; @cb2020b; @houghton2023]. Por tanto, estos resultados sugieren que es posible implementar estrategias de irrigación que consuman menores volúmenes de agua sin tener un impacto negativo en la calidad del producto final. En efecto, nuestros resultados muestran que en el Campo La Esperanza el tratamiento T4 permite disminuir el consumo de agua en alrededor de un 70% con respecto al volumen empleado en T1 (que equipara los niveles de transpiración) , sin afectar la producción ni la calidad del fruto en términos de peso, diámetro, coloración , concentración de sólidos solubles y proporción de cerezas con daño fisiológico. Nótese que a pesar de algunas diferencias observadas entre las estrategias de riego deficitario y los cultivos controles que reciben el riego habitual de una de las empresas líder en el rubro (Garces Fruit), las medidas de tendencia central se encuentran generalmente por arriba de los estándares comerciales, por lo que el impacto económico derivadas de ellas podría ser poco significativo.
+
+En el caso de Río Claro, llama la atención como estrategias de riego comparables a las de la Esperanza derivaron en niveles de potencial hídrico tan diferenciados entre los distintos tratamientos. Esto es especialmente notorio para los cultivos de T3 y T4, en donde los valores de potencial alcanzaron niveles de estrés de moderado a severo (-1.5MPa\<Ψ\<-2 MPa) e incluso de severo a crítico (Ψ\<-2 MPa) durante gran parte de los meses de noviembre y diciembre, coincidiendo con etapas claves para la culminación del desarrollo y maduración de las frutas. En estos dos tratamientos los potenciales hídricos incluso alcanzaron valores cercanos a -3MPa, encontrándose por tanto dentro de un umbral que afecta el crecimiento vegetativo en cerezos, la tasa fotosintética, la carga y rendimiento de los frutos [@johnson1994; @abdelfatah2013; @cb2020b; @bhusal2021; @blaya2021]. En este campo los resultados obtenidos son fuertemente contrastantes con los reportados para La Esperanza, encontrando que el riego deficitario impacta de manera significativa la calidad de la fruta, no sólo en comparación con las cerezas provenientes de cultivos con riego habitual, sino también en términos relativos a los estándares comerciales. En entregas posteriores se deberá ahondar sobre potenciales factores que expliquen este comportamiento tan disímil entre campos.
+
+# Conclusión
+
+-   Durante el tiempo evaluado en el presente estudio se observó que la dinámica de la eficacia fotosintética parece responder principalmente al ciclo fenológico del cultivo de cerezas más que a los niveles de riego. Al mismo tiempo, la distribución semanal de la irrigación parece tener un impacto mayor en el cambio en el tiempo de los niveles del potencial hídrico xilemático.
+
+-   Durante el período de culminación de maduración y desarrollo del fruto se observa como tendencia general un solapamiento de altos valores relativos de fluorescencia con bajos niveles de potencial hídrico.
+
+-   En el campo La Esperanza las estrategias de riego deficitario dieron lugar a condiciones de estrés hídrico moderado en los cultivos, lo cual no tuvo un impacto significativo en la calidad y cantidad de la fruta, sin que se observara una disminución en los parámetros valorados comercialmente.
+
+-   En el campo Río Claro, a pesar de utilizar estrategias de riego similares a La Esperanza, los niveles de potencial hídrico alcanzaron valores que son indicativos de estrés severo y crítico en cerezos durante la etapa de maduración y expansión de la fruta. En este caso se observó una pérdida significativa de  la calidad de la fruta y de su valoración comercial.
+
+-   Se realizarán análisis futuros para comprender la potencial importancia relativa de efectos aleatorios sobre la dinámica de los indicadores de fluorescencia y potencial hídrico. Al mismo tiempo, se deberá ahondar en los factores que pueden explicar las diferencias observadas entre los campos en términos del potencial hídrico alcanzado por los cultivos y la calidad de la fruta.\
+
+
+\renewcommand{\thesection}{\Alph{section}}
+
+# Figuras Suplementarias 
+
+```{r}
+#| label: anexo1-la-esperanza-t1-potencial-riego-y-fv/fm 
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 1: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fm) e irrigación acumulada semanal.La Esperanza.T1"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd, aes(day, T1.p), colour="royalblue4")+ geom_line(data=bd, aes(day, T1.Fv_Fm_tp), linetype= "dotted", colour="royalblue4", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("La Esperanza.T1. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.38, label="Ψ",color="royalblue4", size=3)+ annotate(geom="text", x=130, y=-0.85, label="Fv/Fm",color="royalblue4", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.2, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.2, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.2, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.2, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.2, label="febrary",color="black", size=3)
+
+b<-ggplot(data=bd.t1, aes(x = fct_inorder(week), y = irrigation_mm)) +geom_bar(stat = "identity", fill = "royalblue4")+ ggtitle("Irrigation")+ theme_minimal()+xlab("week")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo2. La Esperanza.T2. Potencial, Riego y Fv/Fm 
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 2: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fm) e irrigación acumulada semanal.La Esperanza.T2"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd, aes(day, T2.p), colour="lightskyblue")+ geom_line(data=bd, aes(day, T2.Fv_Fm_tp), linetype= "dotted", colour="lightskyblue", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("La Esperanza.T2. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.56, label="Ψ",color="lightskyblue", size=3)+ annotate(geom="text", x=130, y=-1.35, label="Fv/Fm",color="lightskyblue", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+b<-ggplot(data=bd.t2, aes(x = fct_inorder(week), y = irrigation_mm)) +geom_bar(stat = "identity", fill = "lightskyblue")+ ggtitle("Irrigation")+ theme_minimal()+xlab("week")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo3. La Esperanza.T3. Potencial, Riego y Fv/Fm 
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig. Suplementaria 3: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fm) e irrigación acumulada semanal.La Esperanza.T3"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+
+
+a<-ggplot()+ geom_line(data=bd, aes(day, T3.p), colour="rosybrown2")+ geom_line(data=bd, aes(day, T3.Fv_Fm_tp), linetype= "dotted", colour="rosybrown2", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("La Esperanza.T3. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="rosybrown2", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fv/Fm",color="rosybrown2", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+b<-ggplot(data=bd.t3, aes(x = fct_inorder(week), y = irrigation_mm)) +geom_bar(stat = "identity", fill = "rosybrown2")+ ggtitle("Irrigation")+ theme_minimal()+xlab("week")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+
+
+```
+
+```{r}
+#| label: Anexo4. La Esperanza.T4. Potencial, Riego y Fv/Fm 
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 4: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fm) e irrigación acumulada semanal.La Esperanza.T4"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+
+a<-ggplot()+ geom_line(data=bd, aes(day, T4.p), colour="red3")+ geom_line(data=bd, aes(day,T4.Fv_Fm_tp), linetype= "dotted", colour="red3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("La Esperanza.T4. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="red3", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fv/Fm",color="red3", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+b<-ggplot(data=bd.t4, aes(x = fct_inorder(week), y = irrigation_mm)) +geom_bar(stat = "identity", fill = "red3")+ ggtitle("Irrigation")+ theme_minimal()+xlab("week")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 5. Río Claro.T1. Potencial, Riego y Fv/Fm 
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 5: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fm) e irrigación acumulada semanal.Río Claro.T1"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd1, aes(day, T1.p), colour="royalblue4")+ geom_line(data=bd1, aes(day, T1.Fv_Fm_t), linetype= "dotted", colour="royalblue4", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("Río Claro.T1. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-2.25, label="Ψ",color="royalblue4", size=3)+ annotate(geom="text", x=130, y=-1.75, label="Fv/Fm",color="royalblue4", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.5, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.5, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.5, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.5, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.5, label="febrary",color="black", size=3)
+b<-ggplot(data=bd.ri.t1, aes(x = fct_inorder(week), y = irrigation_mm)) +geom_bar(stat = "identity", fill = "royalblue4")+ ggtitle("Irrigation")+ theme_minimal()+xlab("week")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 6. Río Claro.T2. Potencial, Riego y Fv/Fm 
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 6: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fm) e irrigación acumulada semanal.Río Claro.T2"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd1, aes(day, T2.p), colour="lightskyblue")+ geom_line(data=bd1, aes(day, T2.Fv_Fm_t), linetype= "dotted", colour="lightskyblue", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("Río Claro.T2. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.9, label="Ψ",color="lightskyblue", size=3)+ annotate(geom="text", x=132, y=-1.75, label="Fv/Fm",color="lightskyblue", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+b<-ggplot(data=bd.ri.t2, aes(x = fct_inorder(week), y = irrigation_mm)) +geom_bar(stat = "identity", fill = "lightskyblue")+ ggtitle("Irrigation")+ theme_minimal()+xlab("week")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 7. Río Claro.T3. Potencial, Riego y Fv/Fm 
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 7: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fm) e irrigación acumulada semanal.Río Claro.T3"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd1, aes(day, T3.p), colour="rosybrown2")+ geom_line(data=bd1, aes(day, T3.Fv_Fm_t), linetype= "dotted", colour="rosybrown2", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("Río Claro.T3. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-2.0, label="Ψ",color="rosybrown2", size=3)+ annotate(geom="text", x=130, y=-1.35, label="Fv/Fm",color="rosybrown2", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.5, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.5, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.5, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.5, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.5, label="febrary",color="black", size=3)
+b<-ggplot(data=bd.ri.t3, aes(x = fct_inorder(week), y = irrigation_mm)) +geom_bar(stat = "identity", fill = "rosybrown2")+ ggtitle("Irrigation")+ theme_minimal()+xlab("week")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 8. Río Claro.T4. Potencial, Riego y Fv/Fm 
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 8: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fm) e irrigación acumulada semanal.Río Claro.T4"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd1, aes(day, T4.p), colour="red3")+ geom_line(data=bd1, aes(day,T4.Fv_Fm_t), linetype= "dotted", colour="red3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("Río Claro.T4. Water potential (Ψ) and fluorescence (Fv/Fm)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="red3", size=3)+ annotate(geom="text", x=130, y=-1.92, label="Fv/Fm",color="red3", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+b<-ggplot(data=bd.ri.t4, aes(x = fct_inorder(week), y = irrigation_mm)) +geom_bar(stat = "identity", fill = "red3")+ ggtitle("Irrigation")+ theme_minimal()+xlab("week")
+
+ggarrange(a, b,labels = c("A", "B"),ncol = 1, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 9. Dinámica del indicador Fo. La Esperanza
+#| warning: false
+#| echo: false
+#| fig-cap: "Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fo) e irrigación acumulada semanal.La Esperanza.Tratamientos de riego deficitario"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd, aes(day, T1.p), colour="royalblue4")+ geom_line(data=bd, aes(day, T1.Fo_tp), linetype= "dotted", colour="royalblue4", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T1. Water potential (Ψ) and fluorescence (Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.38, label="Ψ",color="royalblue4", size=3)+ annotate(geom="text", x=130, y=-0.78, label="Fo",color="royalblue4", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.2, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.2, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.2, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.2, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.2, label="febrary",color="black", size=3)
+
+b<-ggplot()+ geom_line(data=bd, aes(day, T2.p), colour="lightskyblue")+ geom_line(data=bd, aes(day, T2.Fo_tp), linetype= "dotted", colour="lightskyblue", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T2. Water potential (Ψ) and fluorescence (Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.56, label="Ψ",color="lightskyblue", size=3)+ annotate(geom="text", x=130, y=-1.35, label="Fo",color="lightskyblue", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+c<-ggplot()+ geom_line(data=bd, aes(day, T3.p), colour="rosybrown2")+ geom_line(data=bd, aes(day, T3.Fo_tp), linetype= "dotted", colour="rosybrown2", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T3. Water potential (Ψ) and fluorescence (Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="rosybrown2", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fo",color="rosybrown2", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+d<-ggplot()+ geom_line(data=bd, aes(day, T4.p), colour="red3")+ geom_line(data=bd, aes(day, T4.Fo_tp), linetype= "dotted", colour="red3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T4. Water potential (Ψ) and fluorescence (Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="red3", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fo",color="red3", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+
+ggarrange(a, b, c, d,labels = c("A", "B","C","D"),ncol = 2, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 10. Dinámica del indicador Fv/Fo. La Esperanza
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 10: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fo) e irrigación acumulada semanal.La Esperanza.Tratamientos de riego deficitario"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd, aes(day, T1.p), colour="royalblue4")+ geom_line(data=bd, aes(day, T1.Fv_Fm_tp), linetype= "dotted", colour="royalblue4", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T1. Water potential (Ψ) and fluorescence (Fv/Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.38, label="Ψ",color="royalblue4", size=3)+ annotate(geom="text", x=130, y=-0.85, label="Fv/Fo",color="royalblue4", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.2, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.2, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.2, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.2, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.2, label="febrary",color="black", size=3)
+
+b<-ggplot()+ geom_line(data=bd, aes(day, T2.p), colour="lightskyblue")+ geom_line(data=bd, aes(day, T2.Fv_Fm_tp), linetype= "dotted", colour="lightskyblue", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T2. Water potential (Ψ) and fluorescence (Fv/Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.56, label="Ψ",color="lightskyblue", size=3)+ annotate(geom="text", x=130, y=-1.35, label="Fv/Fo",color="lightskyblue", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+c<-ggplot()+ geom_line(data=bd, aes(day, T3.p), colour="rosybrown2")+ geom_line(data=bd, aes(day, T3.Fv_Fm_tp), linetype= "dotted", colour="rosybrown2", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T3. Water potential (Ψ) and fluorescence (Fv/Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="rosybrown2", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fv/Fo",color="rosybrown2", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+d<-ggplot()+ geom_line(data=bd, aes(day, T4.p), colour="red3")+ geom_line(data=bd, aes(day,T4.Fv_Fm_tp), linetype= "dotted", colour="red3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T4. Water potential (Ψ) and fluorescence (Fv/Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="red3", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fv/Fo",color="red3", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+ggarrange(a, b, c, d,labels = c("A", "B","C","D"),ncol = 2, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 11. Dinámica del indicador Fo. Río Claro
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 11: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fo) e irrigación acumulada semanal.Río Claro.Tratamientos de riego deficitario"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd1, aes(day, T1.p), colour="royalblue4")+ geom_line(data=bd1, aes(day, T1.Fo_t), linetype= "dotted", colour="royalblue4", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T1. Water potential (Ψ) and fluorescence (Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-2.0, label="Ψ",color="royalblue4", size=3)+ annotate(geom="text", x=130, y=-1.0, label="Fo",color="royalblue4", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.2, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.2, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.2, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.2, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.2, label="febrary",color="black", size=3)
+
+b<-ggplot()+ geom_line(data=bd1, aes(day, T2.p), colour="lightskyblue")+ geom_line(data=bd1, aes(day, T2.Fo_t), linetype= "dotted", colour="lightskyblue", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T2. Water potential (Ψ) and fluorescence (Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.56, label="Ψ",color="lightskyblue", size=3)+ annotate(geom="text", x=130, y=-0.9, label="Fo",color="lightskyblue", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+c<-ggplot()+ geom_line(data=bd1, aes(day, T3.p), colour="rosybrown2")+ geom_line(data=bd1, aes(day, T3.Fo_t), linetype= "dotted", colour="rosybrown2", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T3. Water potential (Ψ) and fluorescence (Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.1, label="Ψ",color="rosybrown2", size=3)+ annotate(geom="text", x=130, y=-1.82, label="Fo",color="rosybrown2", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+d<-ggplot()+ geom_line(data=bd1, aes(day, T4.p), colour="red3")+ geom_line(data=bd1, aes(day, T4.Fo_t), linetype= "dotted", colour="red3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd1$day), max(bd1$day), by = 9),1))+ ggtitle("T4. Water potential (Ψ) and fluorescence (Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="red3", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fo",color="red3", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+
+ggarrange(a, b, c, d,labels = c("A", "B","C","D"),ncol = 2, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 12. Dinámica del indicador Fv/Fo. Río Claro
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 12: Dinámicas del potencial hídrico xilématico al mediodía , indicador de fluorescencia (Fv/Fo) e irrigación acumulada semanal.Río Claro.Tratamientos de riego deficitario"
+#| fig-width: 10
+#| fig-height: 5
+#| fig-pos: '!ht'
+
+a<-ggplot()+ geom_line(data=bd, aes(day, T1.p), colour="royalblue4")+ geom_line(data=bd, aes(day, T1.Fv_Fm_tp), linetype= "dotted", colour="royalblue4", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T1. Water potential (Ψ) and fluorescence (Fv/Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.38, label="Ψ",color="royalblue4", size=3)+ annotate(geom="text", x=130, y=-0.85, label="Fv/Fo",color="royalblue4", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.2, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.2, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.2, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.2, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.2, label="febrary",color="black", size=3)
+
+b<-ggplot()+ geom_line(data=bd, aes(day, T2.p), colour="lightskyblue")+ geom_line(data=bd, aes(day, T2.Fv_Fm_tp), linetype= "dotted", colour="lightskyblue", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T2. Water potential (Ψ) and fluorescence (Fv/Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.56, label="Ψ",color="lightskyblue", size=3)+ annotate(geom="text", x=130, y=-1.35, label="Fv/Fo",color="lightskyblue", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+c<-ggplot()+ geom_line(data=bd, aes(day, T3.p), colour="rosybrown2")+ geom_line(data=bd, aes(day, T3.Fv_Fm_tp), linetype= "dotted", colour="rosybrown2", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T3. Water potential (Ψ) and fluorescence (Fv/Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="rosybrown2", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fv/Fo",color="rosybrown2", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+d<-ggplot()+ geom_line(data=bd, aes(day, T4.p), colour="red3")+ geom_line(data=bd, aes(day,T4.Fv_Fm_tp), linetype= "dotted", colour="red3", size= 1)+ theme_light()+scale_x_continuous(breaks = round(seq(min(bd$day), max(bd$day), by = 9),1))+ ggtitle("T4. Water potential (Ψ) and fluorescence (Fv/Fo)")+ xlab("days")+ ylab("Normalized values")+ annotate(geom="text", x=130, y=-1.35, label="Ψ",color="red3", size=3)+ annotate(geom="text", x=130, y=-0.82, label="Fv/Fo",color="red3", size=3)+geom_vline(xintercept = 15, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 44, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 73, colour="black",size= 0.5, linetype="dotted")+geom_vline(xintercept = 101, colour="black",size= 0.5, linetype="dotted")+ annotate(geom="text", x=3.5, y=-0.45, label="october",color="black", size=3) + annotate(geom="text", x=28, y=-0.45, label="november",color="black", size=3) + annotate(geom="text", x= 56, y=-0.45, label="december",color="black", size=3) + annotate(geom="text", x= 83, y=-0.45, label="january",color="black", size=3) + annotate(geom="text", x=110, y=-0.47, label="febrary",color="black", size=3)
+
+ggarrange(a, b, c, d,labels = c("A", "B","C","D"),ncol = 2, nrow = 2)
+
+```
+
+```{r}
+#| label: Anexo 13. Daños por categoría. La Esperanza.
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 13: Daños en cerezas por categorías y por Kg de producción entre cultivos de diferentes tratamientos. La esperanza"
+#| fig-width: 10
+#| fig-height: 10
+#| fig-pos: '!ht'
+
+a<-ggplot(cz7, aes(x= treatment, y= pitting.damage.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= pitting.damage.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Cherries with pitting/skin damage per Kg")
+
+b<-ggplot(cz7, aes(x= treatment, y= spur.double.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= spur.double.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Cherries double/spur per Kg")
+
+c<-ggplot(cz7, aes(x= treatment, y= rot.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= rot.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Rot cherries per Kg")
+
+d<-ggplot(cz7, aes(x= treatment, y= overmature.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= overmature.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Overmature cherries per Kg")
+
+e<-ggplot(cz7, aes(x= treatment, y= splits.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= splits.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Cherries with longitudinal split per Kg")
+
+f<-ggplot(cz7, aes(x= treatment, y= pallidness.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= pallidness.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Cherries with paleness per Kg")
+
+
+
+ggarrange(a, b, c, d,e,f,labels = c("A", "B","C","D","E","F"),ncol = 2, nrow = 3)
+
+
+
+
+```
+
+```{r}
+#| label: Anexo 14. Daños por categoría. Río Claro.
+#| warning: false
+#| echo: false
+#| fig-cap: " Fig.Suplementaria 14: Daños en cerezas por categorías y por Kg de producción entre cultivos de diferentes tratamientos. Río Claro"
+#| fig-width: 10
+#| fig-height: 10
+#| fig-pos: '!ht'
+
+a<-ggplot(cz8, aes(x= treatment, y= pitting.damage.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= pitting.damage.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Cherries with pitting/skin damage per Kg")
+
+b<-ggplot(cz8, aes(x= treatment, y= spur.double.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= spur.double.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Cherries double/spur per Kg")
+
+c<-ggplot(cz8, aes(x= treatment, y= rot.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= rot.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Rot cherries per Kg ")
+
+d<-ggplot(cz8, aes(x= treatment, y= overmature.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= overmature.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Overmature cherries per Kg")
+
+e<-ggplot(cz8, aes(x= treatment, y= splits.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= splits.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Cherries with longitudinal split per Kg ")
+
+f<-ggplot(cz8, aes(x= treatment, y= pallidness.kg, fill= treatment)) + geom_boxplot()+ geom_jitter(aes(x= treatment, y= pallidness.kg),size= 1)+stat_summary(fun="mean", colour="white", size= 3, pch=1, geom="point")+ scale_fill_manual(values=c("azure3","royalblue4","lightskyblue","rosybrown2","red3"))+ theme_bw()+labs(title = "Cherries with paleness per Kg")
+
+
+ggarrange(a, b, c, d,e,f,labels = c("A", "B","C","D","E","F"),ncol = 2, nrow = 3)
+
+
+
+
+
+```
+
+\newpage
+
+# Referencias {.unnumbered}
+
+::: {#refs}
+:::
