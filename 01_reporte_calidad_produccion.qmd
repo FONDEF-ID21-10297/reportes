@@ -9,11 +9,6 @@ format:
     lot: true
     toc: true
     number-sections: true
-  pdf:
-    lof: true
-    lot: true
-    toc: true
-    number-sections: true
 bibliography: referencias.bib
 date: "24/03/2023"
 ---
